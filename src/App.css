@@ -1,0 +1,180 @@
+
+.App
+{
+    font-family: Merriweather, serif;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+
+    flex-flow: row nowrap;
+    align-items: stretch;
+}
+
+.App *
+{
+    transition: all .2s ease;
+}
+
+aside
+{
+
+    max-width: 20%;
+    min-width: 20%;
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    background: rgba(0, 0, 0, .05);
+}
+
+.aside-header{
+  padding: 0;
+}
+
+.aside-header h2,
+.aside-header p{
+  margin-top: 0;
+}
+
+aside .authors{
+  overflow: auto;
+  flex: 1;
+}
+
+.Collapsible .Collapsible__trigger
+{
+  border: 5px solid black;
+}
+
+
+.Collapsible.author .Collapsible__trigger
+{
+  border: 1px solid black;
+}
+
+.Collapsible__trigger
+{
+    display: block;
+
+    padding: .3rem;
+
+    cursor: pointer;
+    font-size: .6rem;
+}
+
+.author.accord{
+  background: lightgreen;
+}
+
+.author.mitige{
+  background: orange;
+}
+
+.author.desaccord{
+  background: brown;
+  color: white;
+}
+
+
+.declaration
+{
+    font-size: .5rem;
+
+    padding: 1rem;
+}
+
+.declaration-title
+{
+    padding: 1rem;
+    padding-bottom: 0;
+}
+
+#main
+{
+    display: flex;
+    overflow: hidden;
+
+    height: 100%;
+    min-width: 70%;
+
+    flex: 1;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    min-width: 60%;
+    max-width: 60%;
+}
+
+#main .title{
+  background: brown;
+  color: white;
+  padding: 1rem;
+  margin: 0;
+  font-weight: 400;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+#main .title a,
+#main .title a:hover,
+#main .title a:visited{
+  text-decoration: none;
+  color: inherit;
+}
+
+.block{
+  cursor: pointer;
+}
+
+.block.active{
+  background: rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+#report
+{
+    overflow: auto;
+
+    padding: 2rem;
+    padding-right: 5rem;
+
+    flex: 1;
+}
+
+#mini-report{
+  font-size: .6px;
+  overflow-y: auto;
+  max-height: 100%;
+  min-width: 20%;
+  background: rgba(0, 0, 0, .05);
+}
+
+#mini-report ol, #mini-report ul{
+  padding: 0;
+}
+#mini-report li{
+  padding: 0;
+}
+
+#controls
+{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background: brown;
+    color: white;
+}
+
+#controls p,
+#controls div{
+  margin-left: 1rem;
+}
+#controls div{
+  margin-bottom: 1rem;
+}
