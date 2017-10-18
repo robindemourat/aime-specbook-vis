@@ -25,7 +25,7 @@ const Block = ({
     style.opacity = scale.range([.2, 1])(block.score)
   } 
   if (mode !== 'original' && materializationStyle === 'color') {
-    style.color = scale.range(['red', 'green'])(block.score)
+    style.color = scale.range(['#e4572d', '#20b2aa'])(block.score)
   } 
   if(mode !== 'original' && materializationStyle === 'size' || materializationStyle === 'size-opacity') {
     style.fontSize = scale.range(['.5', '1'])(block.score) + 'em'
@@ -53,8 +53,8 @@ const Author = ({
   return (
     <Collapsible 
       trigger={`${author.prenom} ${author.nom}`}
-      onClose={() => onClose(author.id)}
-      onOpen={() => onOpen(author.id)}
+      onClosing={() => onClose(author.id)}
+      onOpening={() => onOpen(author.id)}
       className={'author ' + (author.status || '')}
     >
       <h4 className="declaration-title">Déclaration</h4>
@@ -115,7 +115,6 @@ class App extends Component {
 
   onBlockClick = inputNumber => {
     let number = inputNumber;
-    console.log(number);
     // toggle behavior
     if (number && this.state.activeNumber === number) {
       number = undefined;
@@ -178,8 +177,6 @@ class App extends Component {
       onMaterializationStyleChange,
       addFilter,
       removeFilter,
-      onBlockEnter,
-      onBlockLeave,
       onBlockClick,
     } = this;
 
@@ -188,6 +185,7 @@ class App extends Component {
       <div className="App">
         <aside>
           <div className="aside-header">
+            <h1 className="title"><a href="https://docs.google.com/document/d/18fFz3_ICixomjd8Wh6XNUzowzq2KNPRzPGrAhQVvIio/edit?usp=sharing" target="blank">Specbook</a> <a href="http://modesofexistence.org/" target="blank">EME</a> - visualisation des désaccords</h1>
             <p>
               <i>Ouvrir la déclaration attachée à un (ou plusieurs) auteur(s) pour voir le texte de son/leur point de vue.</i>
             </p>
@@ -205,7 +203,6 @@ class App extends Component {
           }
         </aside>
         <section id="main">
-          <h1 className="title"><a href="https://docs.google.com/document/d/18fFz3_ICixomjd8Wh6XNUzowzq2KNPRzPGrAhQVvIio/edit?usp=sharing" target="blank">Specbook</a> <a href="http://modesofexistence.org/" target="blank">EME</a> - visualisation des désaccords</h1>
           {blocks ? 
             <section id="report">
               {
@@ -222,39 +219,43 @@ class App extends Component {
             </section> 
             : <section className="loading">Chargement</section>
           }
-          <div id="controls">
-            <p>
-              <i>
-                Cliquez sur un paragraphe pour voir qui a exprimé des désaccords à son propos.
-              </i>
-            </p>
-            <RadioGroup name="mode" selectedValue={mode} onChange={onModeChange}>
-              <Radio value="original" />Texte original
-              <Radio value="accords" />Matérialiser les accords
-              <Radio value="desaccords" />Matérialiser les désaccords
-            </RadioGroup>
-            {mode !== 'original' && <RadioGroup name="materializationStyle" selectedValue={materializationStyle} onChange={onMaterializationStyleChange}>
-              <Radio value="color" />Couleur
-              <Radio value="opacity" />Opacité
-              <Radio value="size" />Taille
-              <Radio value="size-opacity" />Opacité et taille
-            </RadioGroup>}
-            </div>
         </section>
-        {blocks ? 
-            <section id="mini-report">
-              {
-                blocks
-                .map((block, index) => <Block 
-                  block={block} 
-                  mode={mode}
-                  key={index} 
-                  materializationStyle={materializationStyle}
-                  onMouseClick={onBlockClick}
-                  activeNumber={activeNumber}
-                />)
-              }
-            </section> 
+
+        {
+          blocks ? 
+            <section id="aside-right">
+              <section id="mini-report">
+                {
+                  blocks
+                  .map((block, index) => <Block 
+                    block={block} 
+                    mode={mode}
+                    key={index} 
+                    materializationStyle={materializationStyle}
+                    onMouseClick={onBlockClick}
+                    activeNumber={activeNumber}
+                  />)
+                }
+              </section> 
+              <div id="controls">
+                  <p>
+                    <i>
+                      Cliquez sur un paragraphe pour voir qui a exprimé des désaccords à son propos.
+                    </i>
+                  </p>
+                  <RadioGroup name="mode" selectedValue={mode} onChange={onModeChange}>
+                    <li><Radio value="original" />Texte original</li>
+                    <li><Radio value="accords" />Matérialiser les accords</li>
+                    <li><Radio value="desaccords" />Matérialiser les désaccords</li>
+                  </RadioGroup>
+                  {mode !== 'original' && <RadioGroup name="materializationStyle" selectedValue={materializationStyle} onChange={onMaterializationStyleChange}>
+                    <li><Radio value="color" />Couleur</li>
+                    <li><Radio value="opacity" />Opacité</li>
+                    <li><Radio value="size" />Taille</li>
+                    <li><Radio value="size-opacity" />Opacité et taille</li>
+                  </RadioGroup>}
+              </div>
+            </section>
             : <section className="loading">Chargement</section>
           }
       </div>

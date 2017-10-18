@@ -1,7 +1,7 @@
 
 .App
 {
-    font-family: Merriweather, serif;
+    font-family: Lato, sans-serif;
 
     position: fixed;
     top: 0;
@@ -15,6 +15,8 @@
 
     flex-flow: row nowrap;
     align-items: stretch;
+
+    color: #333;
 }
 
 .App *
@@ -51,13 +53,13 @@ aside .authors{
 
 .Collapsible .Collapsible__trigger
 {
-  border: 5px solid black;
+  border: 5px solid #333;
 }
 
 
 .Collapsible.author .Collapsible__trigger
 {
-  border: 1px solid black;
+  border: 1px solid white;
 }
 
 .Collapsible__trigger
@@ -70,31 +72,44 @@ aside .authors{
     font-size: .6rem;
 }
 
+.author{
+  background: #333;
+  color: white;
+}
+
 .author.accord{
-  background: lightgreen;
+  background: #d8e7ce;
+  color: #333;
 }
 
 .author.mitige{
-  background: orange;
+  background: #f08218;
+  color: #333;
 }
 
 .author.desaccord{
-  background: brown;
+  background: #e4572d;
   color: white;
 }
 
 
 .declaration
 {
-    font-size: .5rem;
+    font-size: .6rem;
 
     padding: 1rem;
+}
+
+.declaration p,
+.declaration ul{
+  margin: 0;
 }
 
 .declaration-title
 {
     padding: 1rem;
     padding-bottom: 0;
+    margin: 0;
 }
 
 #main
@@ -112,19 +127,21 @@ aside .authors{
     max-width: 60%;
 }
 
-#main .title{
-  background: brown;
-  color: white;
-  padding: 1rem;
+.title{
   margin: 0;
   font-weight: 400;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  font-weight: 900;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
 }
 
-#main .title a,
-#main .title a:hover,
-#main .title a:visited{
+i{
+  font-size: .7rem;
+}
+
+.title a,
+.title a:hover,
+.title a:visited{
   text-decoration: none;
   color: inherit;
 }
@@ -138,22 +155,42 @@ aside .authors{
   padding: 1rem;
 }
 
+.block.active ul,
+.block.active ol{
+  padding-left: 2rem;
+}
+
 #report
 {
     overflow: auto;
 
     padding: 2rem;
-    padding-right: 5rem;
+    padding-right: 7rem;
+    padding-left: 7rem;
+    text-align: justify;
 
     flex: 1;
+    font-family: Merriweather, serif;
+
+}
+ol,ul{
+  padding: 0;
 }
 
+
+#aside-right{
+  max-height: 100%;
+  min-width: 10%;
+  padding: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  overflow: auto;
+}
 #mini-report{
   font-size: .6px;
   overflow-y: auto;
-  max-height: 100%;
-  min-width: 20%;
-  background: rgba(0, 0, 0, .05);
+  flex: 1;
 }
 
 #mini-report ol, #mini-report ul{
@@ -163,18 +200,32 @@ aside .authors{
   padding: 0;
 }
 
-#controls
-{
-    padding-left: 2rem;
-    padding-right: 2rem;
-    background: brown;
-    color: white;
-}
-
-#controls p,
-#controls div{
-  margin-left: 1rem;
-}
 #controls div{
   margin-bottom: 1rem;
+  border-top: 1px solid #333;
 }
+
+#controls li{
+  padding: 0;
+  list-style-type: none;
+}
+
+/**
+ * RESPONSIVITYYYY
+ */
+@media screen and (max-width: 800px) {
+  #report{
+    padding: 2rem;
+  }
+  i{
+    display: none;
+  }
+  .title{
+    font-size: 1rem;
+  }
+
+  #controls{
+    font-size: .6rem;
+  }
+}
+
