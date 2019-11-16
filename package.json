@@ -2,7 +2,7 @@
   "name": "specbook-vis",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://robindemourat.github.io/specbook-vis",
+  "homepage": "https://robindemourat.github.io/aime-specbook-vis",
   "dependencies": {
     "d3-array": "^1.2.1",
     "d3-dsv": "^1.0.7",
