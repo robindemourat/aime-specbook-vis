@@ -1,7 +1,7 @@
 
 .App
 {
-    font-family: Lato, sans-serif;
+    font-family: 'Work Sans', sans-serif;
 
     position: fixed;
     top: 0;
@@ -36,7 +36,7 @@ aside
     display: flex;
     flex-flow: column nowrap;
     align-items: stretch;
-    background: rgba(0, 0, 0, .05);
+    /* background: rgba(0, 0, 0, .05); */
 }
 
 .aside-header{
@@ -150,16 +150,21 @@ i{
 
 .block{
   cursor: pointer;
+  position: relative;
+  width: 100%;
 }
 
 .block.active{
   background: rgba(0, 0, 0, 0.1);
-  padding: 1rem;
+  /* padding: 1rem; */
+  left: -2rem;
+  padding-left: 2rem;
+  width: calc(100% + 2rem);
+  width: 100%;
 }
 
 .block.active ul,
 .block.active ol{
-  padding-left: 2rem;
 }
 
 #report
@@ -170,6 +175,7 @@ i{
     padding-right: 7rem;
     padding-left: 7rem;
     text-align: justify;
+    padding-top: 0;
 
     flex: 1;
     font-family: Merriweather, serif;
@@ -212,6 +218,53 @@ ol,ul{
   list-style-type: none;
 }
 
+
+#controls li label{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+#controls li input[type=radio] {
+  position: relative;
+  appearance: none;
+  font-size: inherit;
+  width: 1em;
+  margin: 0;
+  padding-top: .1em;
+  color: inherit;
+  outline: none;
+  transition: 300ms ease-out;
+  cursor: pointer;
+}
+
+#controls li input[type=radio]::after {
+    content: "○";
+    display: inline-block;
+    text-align: center;
+    width: 1em;
+  }
+
+#controls li input[type=radio]:checked::after {
+    font-weight: 900;
+}
+#controls li input[type=radio]:active {
+  transform: scale(.6);
+}
+
+#controls li input[type=radio] + span {
+    margin-left: .35em;
+}
+
+#controls li input[type=radio]:checked::after {
+  content: "●";
+}
+
+#controls li label span{
+  flex: 1;
+}
+
 /**
  * RESPONSIVITYYYY
  */
@@ -231,3 +284,22 @@ ol,ul{
   }
 }
 
+@media print{
+  #aside-right,
+  aside{
+    display: none;
+  }
+  .App{
+    position: relative;
+    overflow: visible;
+  }
+  #report,
+  #main{
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+  }
+}

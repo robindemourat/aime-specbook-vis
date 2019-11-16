@@ -28,7 +28,7 @@ const Block = ({
     style.color = scale.range(['#e4572d', '#20b2aa'])(block.score)
   } 
   if(mode !== 'original' && materializationStyle === 'size' || materializationStyle === 'size-opacity') {
-    style.fontSize = scale.range(['.5', '1'])(block.score) + 'em'
+    style.fontSize = scale.range(['.5', '2'])(block.score) + 'em'
   }
   const active = activeNumber && block.number && activeNumber === block.number;
   return (
@@ -185,7 +185,9 @@ class App extends Component {
       <div className="App">
         <aside>
           <div className="aside-header">
-            <h1 className="title"><a href="https://docs.google.com/document/d/18fFz3_ICixomjd8Wh6XNUzowzq2KNPRzPGrAhQVvIio/edit?usp=sharing" target="blank">Specbook</a> <a href="http://modesofexistence.org/" target="blank">EME</a> - visualisation des désaccords</h1>
+            <h1 className="title">
+              <a href="https://docs.google.com/document/d/18fFz3_ICixomjd8Wh6XNUzowzq2KNPRzPGrAhQVvIio/edit?usp=sharing" target="blank">Specbook</a> <a href="http://modesofexistence.org/" target="blank">EME</a>
+              <br/><i>visualisation des désaccords</i></h1>
             <p>
               <i>Ouvrir la déclaration attachée à un (ou plusieurs) auteur(s) pour voir le texte de son/leur point de vue.</i>
             </p>
@@ -244,15 +246,15 @@ class App extends Component {
                     </i>
                   </p>
                   <RadioGroup name="mode" selectedValue={mode} onChange={onModeChange}>
-                    <li><Radio value="original" />Texte original</li>
-                    <li><Radio value="accords" />Matérialiser les accords</li>
-                    <li><Radio value="desaccords" />Matérialiser les désaccords</li>
+                    <li><label><Radio value="original" /><span>Texte original</span></label></li>
+                    <li><label><Radio value="accords" /><span>Matérialiser les accords</span></label></li>
+                    <li><label><Radio value="desaccords" /><span>Matérialiser les désaccords</span></label></li>
                   </RadioGroup>
                   {mode !== 'original' && <RadioGroup name="materializationStyle" selectedValue={materializationStyle} onChange={onMaterializationStyleChange}>
-                    <li><Radio value="color" />Couleur</li>
-                    <li><Radio value="opacity" />Opacité</li>
-                    <li><Radio value="size" />Taille</li>
-                    <li><Radio value="size-opacity" />Opacité et taille</li>
+                    <li><label><Radio value="color" /><span>Couleur</span></label></li>
+                    <li><label><Radio value="opacity" /><span>Opacité</span></label></li>
+                    <li><label><Radio value="size" /><span>Taille</span></label></li>
+                    <li><label><Radio value="size-opacity" /><span>Opacité et taille</span></label></li>
                   </RadioGroup>}
               </div>
             </section>
